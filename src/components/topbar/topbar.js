@@ -1,4 +1,3 @@
-import React from "react";
 import "./topbar.css";
 import {
   FaFacebookSquare,
@@ -10,7 +9,7 @@ import {
 
 const TopBar = () => {
   return (
-    <div className="top">
+    <nav className="top">
       <div className="topleft">
         <FaFacebookSquare className="topIcon" />
         <FaTwitterSquare className="topIcon" />
@@ -34,7 +33,7 @@ const TopBar = () => {
         />
         <FaSearch className="searchIcon" />
       </div>
-    </div>
+    </nav>
   );
 };
 
