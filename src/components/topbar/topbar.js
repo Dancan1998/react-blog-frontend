@@ -6,6 +6,7 @@ import {
   FaPinterestSquare,
   FaSearch,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const TopBar = () => {
   return (
@@ -18,19 +19,37 @@ const TopBar = () => {
       </div>
       <div className="topcenter">
         <ul className="topList">
-          <li className="topListItem">home</li>
-          <li className="topListItem">about</li>
-          <li className="topListItem">contact</li>
-          <li className="topListItem">write</li>
+          <li className="topListItem">
+            <Link className="text-link" to="/">
+              home
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="text-link" to="/about">
+              about
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="text-link" to="/contact">
+              contact
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="text-link" to="/create">
+              write
+            </Link>
+          </li>
           <li className="topListItem">logout</li>
         </ul>
       </div>
       <div className="topright">
-        <img
-          className="topImg"
-          src="https://images.pexels.com/photos/2325612/pexels-photo-2325612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-        />
+        <Link to="/profile" className="text-link">
+          <img
+            className="topImg"
+            src="https://images.pexels.com/photos/2325612/pexels-photo-2325612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt=""
+          />
+        </Link>
         <FaSearch className="searchIcon" />
       </div>
     </nav>

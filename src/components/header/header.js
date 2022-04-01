@@ -2,16 +2,12 @@ import "./header.css";
 
 const Header = () => {
   return (
-    <div className="header">
-      <div className="headerTitles">
-        <span className="headerTitleSm">React & Node</span>
-        <span className="headerTitleLg">Blog</span>
+    <div class="hero-image">
+      <div class="hero-text">
+        <h3 className="headerTitles">React & DJango</h3>
+        {/* <h3>And I'm a Photographer</h3>
+        <button>Read More</button> */}
       </div>
-      <img
-        src="https://images.pexels.com/photos/2983467/pexels-photo-2983467.jpeg?cs=srgb&dl=pexels-orione-concei%C3%A7%C3%A3o-2983467.jpg&fm=jpg"
-        className="headerImg"
-        alt=""
-      />
     </div>
   );
 };

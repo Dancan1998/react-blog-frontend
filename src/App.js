@@ -5,12 +5,22 @@ import Single from "./pages/single/Single";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <TopBar />
-      <Register />
+      <Router>
+        <TopBar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/create" element={<Write />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/post/:id" element={<Single />} />
+        </Routes>
+      </Router>
     </>
   );
 }
