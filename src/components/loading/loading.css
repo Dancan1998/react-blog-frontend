@@ -1,0 +1,11 @@
+.loading {
+  position: relative;
+}
+.text {
+  text-align: center;
+  position: absolute;
+  left: 30%;
+  color: black;
+  font-weight: 800;
+  font-size: 4rem;
+}
