@@ -1,18 +1,49 @@
 import "./singlepostdetail.css";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import { singleBlog } from "../../actions/blogActions";
+import Error from "../error/Error";
+import Loading from "../loading/Loading";
 
 const SinglePostDetail = () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+
+  const singleBlogDetails = useSelector((state) => state.singleBlogReducer);
+
+  const { loading, error, singleBlog: singleBlogPost } = singleBlogDetails;
+
+  useEffect(() => {
+    dispatch(singleBlog(params.id));
+  }, [dispatch, params.id]);
+
+  const {
+    title,
+    blog_image,
+    timestamp,
+    author = {},
+    description,
+  } = singleBlogPost;
+  const { name = "" } = author;
+
+  if (error) {
+    return <Error>{error}</Error>;
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="singlePostDetail">
       <div className="singlePostWrapper">
-        <img
-          src="https://images.pexels.com/photos/3762941/pexels-photo-3762941.jpeg"
-          alt=""
-          className="singlePostImg"
-        />
+        <img src={blog_image} alt={title} className="singlePostImg" />
         <h3 className="singlePostTitle">
-          Lorem ipsum dolor sit.
+          {title}
           <div className="singlePostEdit">
             <FaEdit className="singlePostIcon" />
             <MdDelete className="singlePostIcon" />
@@ -20,21 +51,12 @@ const SinglePostDetail = () => {
         </h3>
         <div className="singlePostInfo">
           <span>
-            Author : <b>Dancan Chibole</b>
+            Author : <b>{name}</b>
           </span>
-          <span className="singlePostDate">1 hour ago</span>
+          <span className="singlePostDate">{moment(timestamp).calendar()}</span>
         </div>
         <div className="desc">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            qui maxime et possimus, iste cum dicta iure exercitationem
-            accusantium, sunt, expedita eos necessitatibus quae voluptate. Nulla
-            veniam cum quisquam aliquid? Lorem ipsum, dolor sit amet consectetur
-            adipisicing elit. Recusandae molestias, unde quis dolore fuga
-            voluptates voluptatum sequi, ipsam eaque in omnis earum ex corporis
-            facilis odio ut dolorem eius, iusto nesciunt perspiciatis voluptate.
-            Quis natus praesentium sint nemo, reiciendis dolorem!
-          </p>
+          <p>{description}</p>
         </div>
       </div>
     </div>

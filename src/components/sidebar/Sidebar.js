@@ -5,8 +5,20 @@ import {
   FaInstagramSquare,
   FaPinterestSquare,
 } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { listCategory } from "../../actions/categoryActions";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  const categoryList = useSelector((state) => state.categoryList);
+  const { categories } = categoryList;
+
+  useEffect(() => {
+    dispatch(listCategory());
+  }, [dispatch]);
+
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -24,11 +36,14 @@ const Sidebar = () => {
       <div className="sidebarItem">
         <h3 className="sidebarTitle">categories</h3>
         <ul className="sidebarList">
-          <li className="sidebarListItem">Life</li>
-          <li className="sidebarListItem">Music</li>
-          <li className="sidebarListItem">Sport</li>
-          <li className="sidebarListItem">Style</li>
-          <li className="sidebarListItem">Tech</li>
+          {categories.map((category) => {
+            const { id, name } = category;
+            return (
+              <li key={id} className="sidebarListItem">
+                {name}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="sidebarItem">
