@@ -39,7 +39,11 @@ const TopBar = () => {
               write
             </Link>
           </li>
-          <li className="topListItem">logout</li>
+          <li className="topListItem">
+            <Link className="text-link" to="/login">
+              login
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="topright">

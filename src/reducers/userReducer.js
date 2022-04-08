@@ -5,7 +5,7 @@ import {
 } from "../constants/userConstants";
 
 export const userLoginReducer = (
-  state = { loading: false, userDetails: {}, error: false },
+  state = { loading: false, userToken: {}, error: false },
   action
 ) => {
   if (action.type === USER_LOGIN_REQUEST) {
@@ -19,7 +19,7 @@ export const userLoginReducer = (
     return {
       ...state,
       loading: false,
-      userDetails: action.payload,
+      userToken: action.payload,
     };
   }
 
