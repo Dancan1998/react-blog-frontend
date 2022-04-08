@@ -6,7 +6,7 @@ import {
 } from "../constants/userConstants";
 
 export const userLoginReducer = (
-  state = { loading: false, userToken: {}, error: false },
+  state = { loading: false, userToken: {}, error: false, loggedOut: false },
   action
 ) => {
   if (action.type === USER_LOGIN_REQUEST) {
@@ -33,7 +33,11 @@ export const userLoginReducer = (
   }
 
   if (action.type === USER_LOGOUT) {
-    return {};
+    return {
+      ...state,
+      userToken: {},
+      loggedOut: true,
+    };
   }
 
   return state;

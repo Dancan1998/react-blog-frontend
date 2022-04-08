@@ -8,7 +8,8 @@ const Login = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const { userToken = {} } = useSelector((state) => state.userLogin);
+  const { userToken = {}, error } = useSelector((state) => state.userLogin);
+  console.log(error);
   const { access = "", refresh = "" } = userToken;
 
   const [loginCredentials, setLoginCredentials] = useState({
@@ -65,6 +66,7 @@ const Login = () => {
           Login
         </button>
       </form>
+      {error && <p className="error-text">{error}</p>}
       <button className="loginRegisterButton">
         <Link to="/register" className="text-link">
           Register

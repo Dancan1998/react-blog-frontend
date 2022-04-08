@@ -13,8 +13,8 @@ import { logout } from "../../actions/userActions";
 
 const TopBar = () => {
   const dispatch = useDispatch();
-  const { userToken = {} } = useSelector((state) => state.userLogin);
-  const { access = "" } = userToken;
+  const { loggedOut, userToken } = useSelector((state) => state.userLogin);
+  const { access } = userToken;
   let navigate = useNavigate();
 
   const handleLogout = () => {
@@ -22,10 +22,10 @@ const TopBar = () => {
   };
 
   useEffect(() => {
-    if (access === "") {
+    if (loggedOut) {
       navigate("/");
     }
-  }, [access, navigate]);
+  }, [navigate, loggedOut]);
 
   return (
     <nav className="top">
@@ -57,17 +57,15 @@ const TopBar = () => {
               write
             </Link>
           </li>
-          <li className="topListItem">
-            {access ? (
-              <li className="topListItem" onClick={handleLogout}>
-                logout
-              </li>
-            ) : (
-              <Link className="text-link" to="/login">
-                login
-              </Link>
-            )}
-          </li>
+          {access ? (
+            <li className="topListItem" onClick={handleLogout}>
+              logout
+            </li>
+          ) : (
+            <Link className="text-link" to="/">
+              login
+            </Link>
+          )}
         </ul>
       </div>
       <div className="topright">
