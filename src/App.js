@@ -13,8 +13,8 @@ function App() {
       <Router>
         <TopBar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/create" element={<Write />} />
           <Route path="/profile" element={<Profile />} />

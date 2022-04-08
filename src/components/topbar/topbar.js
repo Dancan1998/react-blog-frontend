@@ -6,9 +6,27 @@ import {
   FaPinterestSquare,
   FaSearch,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../actions/userActions";
 
 const TopBar = () => {
+  const dispatch = useDispatch();
+  const { userToken = {} } = useSelector((state) => state.userLogin);
+  const { access = "" } = userToken;
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  useEffect(() => {
+    if (access === "") {
+      navigate("/");
+    }
+  }, [access, navigate]);
+
   return (
     <nav className="top">
       <div className="topleft">
@@ -40,9 +58,15 @@ const TopBar = () => {
             </Link>
           </li>
           <li className="topListItem">
-            <Link className="text-link" to="/login">
-              login
-            </Link>
+            {access ? (
+              <li className="topListItem" onClick={handleLogout}>
+                logout
+              </li>
+            ) : (
+              <Link className="text-link" to="/login">
+                login
+              </Link>
+            )}
           </li>
         </ul>
       </div>

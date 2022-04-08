@@ -33,9 +33,9 @@ const Login = () => {
 
   useEffect(() => {
     if (access && refresh) {
-      navigate("/");
+      navigate("/home");
     } else {
-      navigate("/login");
+      navigate("/");
     }
   }, [access, refresh, navigate]);
 
