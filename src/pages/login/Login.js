@@ -26,7 +26,9 @@ const Login = () => {
     e.preventDefault();
     //login here
     const { email, password } = loginCredentials;
-    dispatch(login(email, password));
+    if (email && password) {
+      dispatch(login(email, password));
+    }
   };
 
   useEffect(() => {

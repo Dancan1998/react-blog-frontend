@@ -12,9 +12,14 @@ const Posts = () => {
   const blogListResult = useSelector((state) => state.blogList);
   const { blogs, loading, error } = blogListResult;
 
+  const { userToken = {} } = useSelector((state) => state.userLogin);
+  const { access = "", refresh = "" } = userToken;
+
   useEffect(() => {
-    dispatch(list_of_blogs());
-  }, [dispatch]);
+    if (access && refresh) {
+      dispatch(list_of_blogs());
+    }
+  }, [dispatch, access, refresh]);
 
   if (loading) {
     return <Loading />;

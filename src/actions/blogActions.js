@@ -9,12 +9,22 @@ import {
 import axios from "axios";
 import { baseUrl } from "../baseUrls";
 
-export const list_of_blogs = () => async (dispatch) => {
+export const list_of_blogs = () => async (dispatch, getState) => {
   try {
     dispatch({ type: GET_BLOG_REQUEST });
 
-    const { data } = await axios.get(`${baseUrl}/blog_list`);
+    const { userLogin } = getState();
+    const {
+      userToken: { access },
+    } = userLogin;
 
+    const config = {
+      headers: {
+        Authorization: `Bearer ${access}`,
+      },
+    };
+
+    const { data } = await axios.get(`${baseUrl}/blog_list`, config);
     dispatch({ type: GET_BLOG_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
