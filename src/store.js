@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { blogListReducer, singleBlogReducer } from "./reducers/blogReducers";
 import { categoryListReducer } from "./reducers/categoryReducers";
+import { userLoginReducer } from "./reducers/userReducer";
 
 const middleware = [thunk];
 
@@ -10,6 +11,7 @@ const reducer = combineReducers({
   blogList: blogListReducer,
   singleBlogReducer: singleBlogReducer,
   categoryList: categoryListReducer,
+  userLogin: userLoginReducer,
 });
 
 const initialState = {};
